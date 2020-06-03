@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import ClothesList from './components/ClothesList'
+import ClothesList from './components/ClothesList';
+import CommentList from './components/CommentList'
 
 class App extends React.Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class App extends React.Component {
       email: "",
       password: "",
       name: "guest",
-      role: ""
+      role: "",
+      id: null
     };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
@@ -43,14 +45,15 @@ class App extends React.Component {
     if (data) {
       let user = JSON.parse(data);
       console.table(user);
-      let {name, email, password, role} = user.customer;
+      let {name, email, password, role, id} = user.customer;
       this.setState({
         isLogged: true,
         token: user.token,
         name,
         email,
         password,
-        role
+        role,
+        id
       });
       console.table(this.state);
     } else {
@@ -65,7 +68,8 @@ class App extends React.Component {
       email: "",
       password: "",
       name: "guest",
-      role: ""
+      role: "",
+      id: null
     });
     alert("Logged out");
   }
@@ -95,14 +99,15 @@ class App extends React.Component {
     if (data) {
       let user = JSON.parse(data);
       console.table(user);
-      let {name, email, password, role} = user.customer;
+      let {name, email, password, role, id} = user.customer;
       this.setState({
         isLogged: true,
         token: user.token,
         name,
         email,
         password,
-        role
+        role,
+        id
       });
       console.table(this.state);
     } else {
@@ -113,6 +118,8 @@ class App extends React.Component {
   render() {
     let form1;
     let form2;
+    let history;
+
     if(!this.state.isLogged) {
       form1 =
         <form onSubmit={this.handleLogin}>
@@ -144,6 +151,9 @@ class App extends React.Component {
         </form>;
     } else {
       form1 = <button onClick={this.handleLogout} style={{display: "block"}}>Log out</button>
+      history = <div>
+        <h2>Purchase history</h2>
+      </div> 
     }
 
     return (
@@ -151,7 +161,9 @@ class App extends React.Component {
         <h1>Hello {this.state.name}</h1>
         {form1}
         {form2}
-        <ClothesList role={this.state.role}/>
+        <ClothesList role={this.state.role} userId={this.state.id}/>
+        {history}
+        <CommentList />
       </div>
     );
   }
