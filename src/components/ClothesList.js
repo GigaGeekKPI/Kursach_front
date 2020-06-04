@@ -9,7 +9,6 @@ class ClothesList extends React.Component {
             brand: "",
             custom: []
         }
-
         this.handleBrandChange = this.handleBrandChange.bind(this);
     }
 
@@ -18,6 +17,9 @@ class ClothesList extends React.Component {
             clothes: await fetch('http://localhost:8080/clothes', {
                 method: 'GET'
             }).then(res => res.json()).then(res => res.data)
+        });
+        this.setState({
+            custom: this.state.clothes
         });
         console.table(this.state);
     }
@@ -32,10 +34,16 @@ class ClothesList extends React.Component {
     }
 
     handleBrandChange(event) {
-        this.setState({
-            brand: event.target.value,
-            custom: this.state.clothes.filter(el => el.brand === event.target.value)
-        });
+        if (event.target.value === 'All') {
+            this.setState({
+                custom: this.state.clothes
+            });
+        } else {
+            this.setState({
+                brand: event.target.value,
+                custom: this.state.clothes.filter(el => el.brand === event.target.value)
+            });
+        }
     }
 
     render() {
@@ -43,7 +51,7 @@ class ClothesList extends React.Component {
 
         if (this.props.role === 'ROLE_ADMIN') {
             addForm =
-                <form onSubmit={this.handleAdd} style={{ display: "inline-block", margin: "20px" }}>
+                <form onSubmit={this.handleAdd} className="add-form">
                     <label>Name:
                         <input type="text" name="naming" required />
                     </label>
@@ -67,11 +75,14 @@ class ClothesList extends React.Component {
 
         return (
             <>
-                <form>
-                    {unique.map((el, index) => <label key={index}><input type="radio" name="brand" onChange={this.handleBrandChange} value={el} key={index} /> {el} </label>)}
+                <form className="catalog">
+                    <input type="radio" name="brand" onChange={this.handleBrandChange} value="All" id="all" key="All" defaultChecked /><label for="all"> All</label>
+                    {unique.map((el, index) => <><input type="radio" name="brand" id={index} onChange={this.handleBrandChange} value={el} key={index} /><label key={index} for={index}> {el} </label></>)}
                 </form>
-                {addForm}
-                {this.state.custom.map((item, index) => <Clothes clothes={item} role={this.props.role} userId={this.props.userId} key={index} />)}
+                <section className="goods">
+                    {addForm}
+                    {this.state.custom.map((item, index) => <Clothes clothes={item} role={this.props.role} userId={this.props.userId} key={index} />)}
+                </section>
             </>
         );
     }

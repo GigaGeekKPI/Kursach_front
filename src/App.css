@@ -1,38 +1,195 @@
-.App {
-  text-align: center;
+* {
+    color: #333;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+header {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.login-form, .register-form, .add-form {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+header label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
 }
 
-.App-link {
-  color: #61dafb;
+header input {
+    margin-left: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input[type="submit"], button {
+    background: linear-gradient(92.01deg, #8EA7FF 0%, #7291FF 100%);
+    border-radius: 10px;
+    border: 0;
+    padding: 10px 40px;
+    margin: 0;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 22px;
+    color: #FFFFFF;
+    cursor: pointer;
+    outline: none;
 }
+
+.delete, .logout {
+    background: linear-gradient(92.01deg, rgb(255, 114, 114) 0%, rgb(255, 74, 74) 100%);
+    margin-left: 65px;
+}
+
+.comment {
+    background: linear-gradient(92.01deg, rgb(114, 255, 220) 0%, rgb(74, 255, 155) 100%);
+    margin-left: 20px;
+}
+
+.catalog {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.catalog input {
+    display: none;
+}
+
+.catalog label {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    padding: 6px 15px;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ABABAB;
+    display: inline-block;
+    border: 2px solid #F8F8F8;
+    border-radius: 6px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+input[type=radio]:checked+label {
+    background: #F8F8F8;
+}
+
+input[type=radio]:checked+label {
+    color: black;
+}
+
+input[type=text] {
+    border: 2px solid #666666;
+    border-radius: 10px;
+    display: block;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+input::placeholder {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    color: #ABABAB;
+}
+
+.goods, .purchases {
+    width: 66%;
+    margin: auto;
+    display: flex;
+    flex-flow: wrap;
+    align-items: flex-start;
+}
+
+.goods img {
+    border-radius: 20px;
+}
+
+.add-form label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.add-form input {
+    margin-left: 10px;
+}
+
+.add-form {
+    margin: 20px;
+    width: 300px;
+}
+
+.clothes {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 20px;
+    margin: 20px;
+}
+
+.comment-section {
+    width: 36%;
+    margin: auto;
+}
+
+.comment-section h2 {
+    text-align: center;
+    background-color: #f8f8f8;
+}
+
+.comment-container {
+    background-color: #f8f8f8;
+    padding: 40px 0;
+}
+
+.comment-content {
+    border-radius: 10px;
+    background-color: white;
+    margin: 20px 0;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.comment-content span, .id {
+    color: #8EA7FF;
+}
+
+.purchases h2 {
+    width: 100%;
+    text-align: center;
+}
+
+.history {
+    display: flex;
+    align-items: center;
+}
+
+.history img {
+    margin-left: 20px;
+    border-radius: 15px;
+}
+

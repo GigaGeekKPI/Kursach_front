@@ -46,7 +46,7 @@ class App extends React.Component {
     if (data) {
       let user = JSON.parse(data);
       console.table(user);
-      let {name, email, password, role, id} = user.customer;
+      let { name, email, password, role, id } = user.customer;
       this.setState({
         isLogged: true,
         token: user.token,
@@ -81,7 +81,7 @@ class App extends React.Component {
 
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    let raw = JSON.stringify({"name":`${test.get('name')}`, "email": `${test.get("email")}`, "password": `${test.get("password")}` });
+    let raw = JSON.stringify({ "name": `${test.get('name')}`, "email": `${test.get("email")}`, "password": `${test.get("password")}` });
 
     let requestOptions = {
       method: 'POST',
@@ -100,7 +100,7 @@ class App extends React.Component {
     if (data) {
       let user = JSON.parse(data);
       console.table(user);
-      let {name, email, password, role, id} = user.customer;
+      let { name, email, password, role, id } = user.customer;
       this.setState({
         isLogged: true,
         token: user.token,
@@ -120,9 +120,9 @@ class App extends React.Component {
     let form1;
     let form2;
 
-    if(!this.state.isLogged) {
+    if (!this.state.isLogged) {
       form1 =
-        <form onSubmit={this.handleLogin}>
+        <form onSubmit={this.handleLogin} className="login-form">
           <label>
             Email:
           <input type="text" placeholder="example@mail.com" name='email' required />
@@ -131,10 +131,10 @@ class App extends React.Component {
             Password:
           <input type="text" placeholder="1234" name='password' required />
           </label>
-          <input type="submit" value="Log in"/>
+          <input type="submit" value="Log in" />
         </form>;
-        form2 = 
-        <form onSubmit={this.handleRegister} style={{marginTop: "20px"}}>
+      form2 =
+        <form onSubmit={this.handleRegister} className="register-form">
           <label>
             Name:
           <input type="text" placeholder="Username" name='name' required />
@@ -147,19 +147,26 @@ class App extends React.Component {
             Password:
           <input type="text" placeholder="1234" name='password' required />
           </label>
-          <input type="submit" value="Register"/>
+          <input type="submit" value="Register" />
         </form>;
     }
 
     return (
       <div className="App">
-        <h1>Hello {this.state.name}</h1>
-        {form1}
-        {form2}
-        {this.state.isLogged && <button onClick={this.handleLogout} style={{display: "block"}}>Log out</button>}
-        <ClothesList role={this.state.role} userId={this.state.id}/>
-        <CommentList />
-        {this.state.isLogged && <PurchaseList role={this.state.role} userId={this.state.id}/>}
+        <header>
+          {form1}
+          <h1 className="main-header">Hello {this.state.name}</h1>
+          {form2}
+          {this.state.isLogged && <button onClick={this.handleLogout} className="logout">Log out</button>}
+        </header>
+        <main>
+        {this.state.isLogged && <hr/>}
+          <ClothesList role={this.state.role} userId={this.state.id} />
+          <section className="comment-container">
+          <CommentList />
+          </section>
+        </main>
+        {this.state.isLogged && <PurchaseList role={this.state.role} userId={this.state.id} />}
       </div>
     );
   }

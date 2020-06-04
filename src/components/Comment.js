@@ -10,10 +10,9 @@ class Comment extends React.Component {
 
     render() {
         return (
-            <div>
-                <p>{this.state.comment.customerId}</p>
-                <p>{this.state.comment.content}</p>
-                <p>{this.state.comment.clothesId}</p>
+            <div class="comment-content">
+                <p><span>UserID: {this.state.comment.customerId}</span> - about -> <span>ClothesID: {this.state.comment.clothesId}</span></p>
+                <p className="content">{this.state.comment.content}</p>
             </div>
         );
     }

@@ -19,14 +19,16 @@ class Purchase extends React.Component {
 
     render() {
         return (
-            <div>
-                <p>{this.state.purchase.customerId}</p>
-                <p>{this.state.purchase.total}</p>
-                <p>{this.state.purchase.clothesId}</p>
-
-                <p>Name: {this.state.clothes.naming}</p>
-                <p>Brand: {this.state.clothes.brand}</p>
-                <p>Country: {this.state.clothes.country}</p>
+            <div className="clothes history">
+                <div>
+                    <p class="id">UserID: {this.state.purchase.customerId}</p>
+                    <p class="id">ClothesID {this.state.purchase.clothesId}</p>
+                    <p>Total: {this.state.purchase.total}</p>
+                    <p>Name: {this.state.clothes.naming}</p>
+                    <p>Brand: {this.state.clothes.brand}</p>
+                    <p>Country: {this.state.clothes.country}</p>
+                </div>
+                <img src="https://via.placeholder.com/200.png/09f/fff" alt='placeholder' />
             </div>
         );
     }

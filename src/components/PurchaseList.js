@@ -28,7 +28,7 @@ class PurchaseList extends React.Component {
         }
 
         return (
-            <section>
+            <section className="purchases">
                 <h2>Purchase History</h2>
                 {customFilter.map((el, index) => <Purchase purchase={el} key={index} userId={this.props.userId}/>)}
             </section>

@@ -19,7 +19,7 @@ class CommentList extends React.Component {
     }
     render() {
         return (
-            <section>
+            <section className="comment-section" id="comment-section">
                 <h2>Comments</h2>
                 {this.state.comments.map((el, index) => <Comment comment={el} key={index} userId={this.props.userId}/>)}
             </section>
