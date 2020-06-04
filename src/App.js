@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 import ClothesList from './components/ClothesList';
-import CommentList from './components/CommentList'
+import CommentList from './components/CommentList';
+import PurchaseList from './components/PurchaseList'
 
 class App extends React.Component {
   constructor(props) {
@@ -118,7 +119,6 @@ class App extends React.Component {
   render() {
     let form1;
     let form2;
-    let history;
 
     if(!this.state.isLogged) {
       form1 =
@@ -149,11 +149,6 @@ class App extends React.Component {
           </label>
           <input type="submit" value="Register"/>
         </form>;
-    } else {
-      form1 = <button onClick={this.handleLogout} style={{display: "block"}}>Log out</button>
-      history = <div>
-        <h2>Purchase history</h2>
-      </div> 
     }
 
     return (
@@ -161,9 +156,10 @@ class App extends React.Component {
         <h1>Hello {this.state.name}</h1>
         {form1}
         {form2}
+        {this.state.isLogged && <button onClick={this.handleLogout} style={{display: "block"}}>Log out</button>}
         <ClothesList role={this.state.role} userId={this.state.id}/>
-        {history}
         <CommentList />
+        {this.state.isLogged && <PurchaseList role={this.state.role} userId={this.state.id}/>}
       </div>
     );
   }

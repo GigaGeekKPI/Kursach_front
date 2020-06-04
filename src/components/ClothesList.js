@@ -6,7 +6,11 @@ class ClothesList extends React.Component {
         super(props);
         this.state = {
             clothes: [],
+            brand: "",
+            custom: []
         }
+
+        this.handleBrandChange = this.handleBrandChange.bind(this);
     }
 
     async componentDidMount() {
@@ -27,8 +31,16 @@ class ClothesList extends React.Component {
         window.location.reload();
     }
 
+    handleBrandChange(event) {
+        this.setState({
+            brand: event.target.value,
+            custom: this.state.clothes.filter(el => el.brand === event.target.value)
+        });
+    }
+
     render() {
         let addForm;
+
         if (this.props.role === 'ROLE_ADMIN') {
             addForm =
                 <form onSubmit={this.handleAdd} style={{ display: "inline-block", margin: "20px" }}>
@@ -51,10 +63,15 @@ class ClothesList extends React.Component {
                 </form>
         }
 
+        let unique = [...new Set(this.state.clothes.map(el => el.brand))];
+
         return (
             <>
+                <form>
+                    {unique.map((el, index) => <label key={index}><input type="radio" name="brand" onChange={this.handleBrandChange} value={el} key={index} /> {el} </label>)}
+                </form>
                 {addForm}
-                {this.state.clothes.map((el, index) => <Clothes clothes={el} key={index} role={this.props.role} userId={this.props.userId}/>)}
+                {this.state.custom.map((item, index) => <Clothes clothes={item} role={this.props.role} userId={this.props.userId} key={index} />)}
             </>
         );
     }

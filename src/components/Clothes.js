@@ -18,7 +18,7 @@ class Clothes extends React.Component {
     }
 
     async handleDelete() {
-        fetch(`http://localhost:8080/clothes/${this.state.clothes.id}`, {
+        fetch(`http://localhost:8080/clothes/${this.props.clothes.id}`, {
             method: 'DELETE'
         }).then(res => res.json()).then(res => alert(res.data));
         window.location.reload();
@@ -27,7 +27,7 @@ class Clothes extends React.Component {
     async handleEdit(event) {
         event.preventDefault();
         let test = new FormData(event.target);
-        fetch(`http://localhost:8080/clothes/${this.state.clothes.id}?naming=${test.get("naming")}&brand=${test.get("brand")}&country=${test.get("country")}&price=${test.get("price")}&rate=${test.get("rate")}`, {
+        fetch(`http://localhost:8080/clothes/${this.props.clothes.id}?naming=${test.get("naming")}&brand=${test.get("brand")}&country=${test.get("country")}&price=${test.get("price")}&rate=${test.get("rate")}`, {
             method: 'PUT'
         }).then(res => res.json()).then(res => alert(res.data));
         window.location.reload();
@@ -36,7 +36,7 @@ class Clothes extends React.Component {
     async handlePurchase(event) {
         event.preventDefault();
         console.table(this.state);
-        fetch(`http://localhost:8080/purchase?customerId=${this.props.userId}&total=${this.state.clothes.price}&clothesId=${this.state.clothes.id}`, {
+        fetch(`http://localhost:8080/purchase?customerId=${this.props.userId}&total=${this.props.clothes.price}&clothesId=${this.props.clothes.id}`, {
             method: 'POST'
         }).then(res => res.json()).then(res => alert(res.data));
         window.location.reload();
@@ -46,7 +46,7 @@ class Clothes extends React.Component {
         event.preventDefault();
         let test = new FormData(event.target);
         console.table(this.state);
-        fetch(`http://localhost:8080/comment?customerId=${this.props.userId}&content=${test.get("content")}&clothesId=${this.state.clothes.id}`, {
+        fetch(`http://localhost:8080/comment?customerId=${this.props.userId}&content=${test.get("content")}&clothesId=${this.props.clothes.id}`, {
             method: 'POST'
         }).then(res => res.json()).then(res => alert(res.data));
         window.location.reload();
@@ -84,29 +84,29 @@ class Clothes extends React.Component {
             content =
                 <form onSubmit={this.handleEdit} style={{ display: "inline-block", margin: "20px" }}>
                     <label>Name:
-                        <input type="text" name="naming" required defaultValue={this.state.clothes.naming}/>
+                        <input type="text" name="naming" required defaultValue={this.props.clothes.naming}/>
                     </label>
                     <label>Brand:
-                        <input type="text" name="brand" required defaultValue={this.state.clothes.brand}/>
+                        <input type="text" name="brand" required defaultValue={this.props.clothes.brand}/>
                     </label>
                     <label>Country:
-                        <input type="text" name="country" required defaultValue={this.state.clothes.country}/>
+                        <input type="text" name="country" required defaultValue={this.props.clothes.country}/>
                     </label>
                     <label>Price:
-                        <input type="text" name="price" required defaultValue={this.state.clothes.price}/>
+                        <input type="text" name="price" required defaultValue={this.props.clothes.price}/>
                     </label>
                     <label>Rate:
-                        <input type="text" name="rate" required defaultValue={this.state.clothes.rate}/>
+                        <input type="text" name="rate" required defaultValue={this.props.clothes.rate}/>
                     </label>
                     <input type="submit" value="Edit" />
                 </form>
         } else {
             content = <>
-                <p>Name: {this.state.clothes.naming}</p>
-                <p>Brand: {this.state.clothes.brand}</p>
-                <p>Country: {this.state.clothes.country}</p>
-                <p>Price: {this.state.clothes.price} $</p>
-                <p>Rate: {this.state.clothes.rate}</p>
+                <p>Name: {this.props.clothes.naming}</p>
+                <p>Brand: {this.props.clothes.brand}</p>
+                <p>Country: {this.props.clothes.country}</p>
+                <p>Price: {this.props.clothes.price} $</p>
+                <p>Rate: {this.props.clothes.rate}</p>
             </>
         }
 

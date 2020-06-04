@@ -1,5 +1,5 @@
 import React from 'react';
-// import Comment from './Comment'
+import Comment from './Comment'
 
 class CommentList extends React.Component {
     constructor(props) {
@@ -21,8 +21,7 @@ class CommentList extends React.Component {
         return (
             <section>
                 <h2>Comments</h2>
-                {/* <Comment comment={el} key={index} role={this.props.role} userId={this.props.userId}/> */}
-                {this.state.comments.map((el, index) => el.content)}
+                {this.state.comments.map((el, index) => <Comment comment={el} key={index} userId={this.props.userId}/>)}
             </section>
         );
     }
